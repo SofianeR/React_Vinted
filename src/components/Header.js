@@ -1,6 +1,7 @@
 import logo_Vinted from "../assets/img/Vinted_logo.png";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -13,11 +14,15 @@ const Header = () => {
         </div>
       </div>
       <div className="login">
-        <button>S'inscrire</button>
-        <button>Se connecter</button>
+        <Link to={"/signup"}>
+          <button className="button-signup">S'inscrire</button>
+        </Link>
+        <Link to={"/signup"}>
+          <button className="button-signup">Se connecter</button>
+        </Link>
       </div>
       <div className="vendre">
-        <button>Vends tes articles</button>
+        <button className="button-signup">Vends tes articles</button>
       </div>
     </header>
   );

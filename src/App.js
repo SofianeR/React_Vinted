@@ -6,6 +6,7 @@ import axios from "axios";
 
 import Home from "./pages/Home";
 import Offer from "./pages/Offer";
+import Signup from "./pages/Signup";
 
 import Header from "./components/Header";
 
@@ -40,6 +41,7 @@ function App() {
           path="/offer/:id"
           element={<Offer data={articles} axios={axios} />}
         />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </Router>
   );
