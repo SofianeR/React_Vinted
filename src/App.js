@@ -7,12 +7,13 @@ import axios from "axios";
 import Home from "./pages/Home";
 import Offer from "./pages/Offer";
 import Signup from "./pages/Signup";
+import Login from "./pages/Login";
 
 import Header from "./components/Header";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-library.add(faMagnifyingGlass);
+import { faMagnifyingGlass, faUser } from "@fortawesome/free-solid-svg-icons";
+library.add(faMagnifyingGlass, faUser);
 
 function App() {
   const [articles, setArticles] = useState([]);
@@ -42,6 +43,7 @@ function App() {
           element={<Offer data={articles} axios={axios} />}
         />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Router>
   );

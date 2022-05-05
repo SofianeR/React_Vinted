@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import axios from "axios";
 const Signup = () => {
@@ -7,6 +7,8 @@ const Signup = () => {
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
   const [newsLetter, setNewsLetter] = useState(false);
+
+  const navigate = useNavigate();
 
   const signUser = async (e) => {
     e.preventDefault();
@@ -19,6 +21,7 @@ const Signup = () => {
         newsletter: newsLetter,
       }
     );
+    navigate("/login");
   };
 
   return (
@@ -68,7 +71,7 @@ const Signup = () => {
         <div className="submit">
           <input type="submit" value={"S'inscrire"} />
           <Link
-            to={"/signup"}
+            to={"/login"}
             style={{
               textDecoration: "none",
             }}>
