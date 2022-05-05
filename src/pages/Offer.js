@@ -6,7 +6,6 @@ import axios from "axios";
 const Offer = () => {
   const [offer, setOffer] = useState();
   const [isLoading, setIsLoading] = useState(false);
-
   const { id } = useParams();
 
   useEffect(() => {
@@ -18,7 +17,7 @@ const Offer = () => {
       setIsLoading(true);
     };
     fetchData();
-  }, []);
+  }, [id]);
   return isLoading === false ? (
     <p>isLoading</p>
   ) : (

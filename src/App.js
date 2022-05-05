@@ -1,6 +1,6 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import axios from "axios";
 
@@ -30,12 +30,10 @@ function App() {
 
   return (
     <Router>
-      {/* <Link to={"/offer/1234"}>List Offer</Link>
-      <Link to={"/home"}>Home</Link> */}
       <Header />
       <Routes>
         <Route
-          path="/home"
+          path="/"
           element={<Home data={articles} isLoading={isLoading} />}
         />
         <Route
