@@ -30,7 +30,7 @@ function App() {
 
   return (
     <Router>
-      {/* <Link to={"/offer"}>List Offer</Link>
+      {/* <Link to={"/offer/1234"}>List Offer</Link>
       <Link to={"/home"}>Home</Link> */}
       <Header />
       <Routes>
@@ -38,7 +38,10 @@ function App() {
           path="/home"
           element={<Home data={articles} isLoading={isLoading} />}
         />
-        <Route path="/offer" element={<Offer />} />
+        <Route
+          path="/offer/:id"
+          element={<Offer data={articles} axios={axios} />}
+        />
       </Routes>
     </Router>
   );
