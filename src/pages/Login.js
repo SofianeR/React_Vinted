@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -20,8 +20,9 @@ const Login = () => {
           password: password,
         }
       );
-      console.log(response.data);
+      // console.log(response.data);
       Cookies.set("token", response.data.token);
+      // Cookies.set("connected", true);
       navigate("/");
     } catch (error) {
       alert("Vos informations de connexion sont erronées");

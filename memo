@@ -1,1 +1,19 @@
 object.keys pour affichage product details offer
+
+header logged : 
+<div className="header-right-container">
+          <div className="vendre">
+            <button className="button-signup">Vends tes articles</button>
+          </div>
+          <div className="user-logged">
+            <FontAwesomeIcon
+              icon={"user"}
+              size={"2x"}
+              color={"#94D5DA"}
+              onClick={() => {
+                Cookies.remove("token");
+                alert("click");
+              }}
+            />
+          </div>
+        </div>

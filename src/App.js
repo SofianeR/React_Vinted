@@ -8,6 +8,8 @@ import Home from "./pages/Home";
 import Offer from "./pages/Offer";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import ModalLogin from "./components/ModalLogin";
+import ModalSignup from "./components/ModalSignup";
 
 import Header from "./components/Header";
 
@@ -18,6 +20,9 @@ library.add(faMagnifyingGlass, faUser);
 function App() {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const [showModalLogin, setShowModalLogin] = useState(false);
+  const [showModalSignUp, setShowModalSignUp] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,7 +37,23 @@ function App() {
 
   return (
     <Router>
-      <Header />
+      <Header
+        showLogin={showModalLogin}
+        setShowLogin={setShowModalLogin}
+        showSignUp={showModalSignUp}
+        setShowSignUp={setShowModalSignUp}
+      />
+      <ModalLogin
+        showLogin={showModalLogin}
+        setShowLogin={setShowModalLogin}
+        setShowSignUp={setShowModalSignUp}
+      />
+      <ModalSignup
+        showSignUp={showModalSignUp}
+        setShowSignUp={setShowModalSignUp}
+        setShowLogin={setShowModalLogin}
+      />
+
       <Routes>
         <Route
           path="/"
@@ -44,6 +65,7 @@ function App() {
         />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        {/* <Route path="/modal" element={<Modal show={true} />} /> */}
       </Routes>
     </Router>
   );
