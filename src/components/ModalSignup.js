@@ -1,6 +1,8 @@
-import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+
+import axios from "axios";
+
 const ModalSignup = (props) => {
   const [userName, setUserName] = useState("");
   const [mail, setMail] = useState("");
@@ -10,7 +12,7 @@ const ModalSignup = (props) => {
   const signUp = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(
+      const response = await axios.post(
         "https://lereacteur-vinted-api.herokuapp.com/user/signup",
         {
           email: mail,
@@ -19,7 +21,12 @@ const ModalSignup = (props) => {
           newsLetter: newsLetter,
         }
       );
-      alert("Nouvel utilisateur bien enregistré");
+
+      props.setUser(response.data.token);
+      alert(
+        `Nouvel utilisateur bien enregistré : 
+        Bienvenue ${response.data.account.username}`
+      );
       props.setShowSignUp(false);
     } catch (error) {
       alert(error.message);

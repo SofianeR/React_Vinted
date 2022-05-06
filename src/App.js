@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import axios from "axios";
+import Cookies from "js-cookie";
 
 import Home from "./pages/Home";
 import Offer from "./pages/Offer";
@@ -24,6 +25,19 @@ function App() {
   const [showModalLogin, setShowModalLogin] = useState(false);
   const [showModalSignUp, setShowModalSignUp] = useState(false);
 
+  const [token, setToken] = useState(Cookies.get("userToken") || null);
+  console.log(token);
+
+  const setUser = (token) => {
+    if (token !== null) {
+      Cookies.set("userToken", token);
+    } else {
+      Cookies.remove("userToken");
+      setToken(null);
+    }
+    setToken(token);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
@@ -42,16 +56,20 @@ function App() {
         setShowLogin={setShowModalLogin}
         showSignUp={showModalSignUp}
         setShowSignUp={setShowModalSignUp}
+        stateToken={token}
+        setUser={setUser}
       />
       <ModalLogin
         showLogin={showModalLogin}
         setShowLogin={setShowModalLogin}
         setShowSignUp={setShowModalSignUp}
+        setUser={setUser}
       />
       <ModalSignup
         showSignUp={showModalSignUp}
         setShowSignUp={setShowModalSignUp}
         setShowLogin={setShowModalLogin}
+        setUser={setUser}
       />
 
       <Routes>

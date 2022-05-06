@@ -56,7 +56,6 @@ const Signup = () => {
             type="checkbox"
             onChange={(e) => {
               setNewsLetter(!newsLetter);
-              console.log(newsLetter);
             }}
           />
           <p>S'inscrire à notre newletter</p>

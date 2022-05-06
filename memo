@@ -17,3 +17,20 @@ header logged :
             />
           </div>
         </div>
+
+
+
+ header pre return : 
+   // const [cookies, setCookies] = useState(false);
+  // console.log(cookies);
+  // useEffect(() => {
+  // console.log(Cookies.get("connected"));
+  // const checkCookie = async () => {
+  //   const cookieCheck = Cookies.get("token");
+  //   if (cookieCheck) {
+  //     setCookies(true);
+  //   }
+  // };
+  // checkCookie();
+  // setCookies(Cookies.get("connected"));
+  // }, []);       

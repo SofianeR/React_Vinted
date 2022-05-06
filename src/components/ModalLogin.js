@@ -16,7 +16,9 @@ const ModalLogin = (props) => {
           password: password,
         }
       );
-      Cookies.set("token", response.data.token);
+      // Cookies.set("token", response.data.token);
+      props.setUser(response.data.token);
+
       props.setShowLogin(false);
       alert(`Bienvenue ${response.data.account.username}`);
     } catch (error) {

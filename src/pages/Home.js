@@ -10,7 +10,6 @@ const Home = ({ isLoading, data }) => {
         <p>Chargement des Offres</p>
       ) : (
         <div className="container-offers">
-          <input type="checkbox" />
           {data.offers.map((offre, index) => {
             return (
               <Link
