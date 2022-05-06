@@ -34,3 +34,6 @@ header logged :
   // checkCookie();
   // setCookies(Cookies.get("connected"));
   // }, []);       
+
+
+  librairie range prix react-range
