@@ -26,7 +26,6 @@ function App() {
   const [showModalSignUp, setShowModalSignUp] = useState(false);
 
   const [token, setToken] = useState(Cookies.get("userToken") || null);
-  console.log(token);
 
   const setUser = (token) => {
     if (token !== null) {
