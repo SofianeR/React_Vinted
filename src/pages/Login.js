@@ -20,7 +20,6 @@ const Login = () => {
           password: password,
         }
       );
-      // console.log(response.data);
       Cookies.set("token", response.data.token);
       // Cookies.set("connected", true);
       navigate("/");

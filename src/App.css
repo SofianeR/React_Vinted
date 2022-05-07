@@ -32,8 +32,11 @@ header{
     justify-content: space-around;
     align-items: center;  
 }
-.search input{
+.search form{
     width: 90%;
+
+}
+.search input{
     border: none;
     background-color: #F5F6F7;
 
@@ -302,7 +305,7 @@ header img{
     z-index: 10000;
     background-color: white;
     left: 25%;
-    animation: .5s linear 1s infinite alternate slidein;;
+    /* animation: .5s linear 1s infinite alternate slidein; */
 }
 
 .modal form{

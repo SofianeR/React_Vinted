@@ -1,10 +1,13 @@
 import logo_Vinted from "../assets/img/Vinted_logo.png";
 
+import axios from "axios";
+
 // import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 // import Cookies from "js-cookie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
 
 const Header = ({
   showLogin,
@@ -13,7 +16,64 @@ const Header = ({
   setShowSignUp,
   stateToken,
   setUser,
+  filter,
+  setFilter,
+  articles,
+  setData,
+  setIsLoading,
+  sort,
+  title,
+  setTitle,
+  priceMin,
+  priceMax,
 }) => {
+  const search = async (e) => {
+    e.preventDefault();
+
+    setIsLoading(false);
+
+    let str = "";
+    let newArrayFilter = [];
+
+    setFilter(newArrayFilter);
+    // newArrayFilter = [...filter];
+
+    if (title !== "") {
+      newArrayFilter.push({ label: "title", value: title });
+      setFilter(newArrayFilter);
+    }
+
+    if (sort) {
+      if (sort === true) {
+        newArrayFilter.push({ label: "sort", value: "price-desc" });
+      } else {
+        newArrayFilter.push({ label: "sort", value: "price-asc" });
+      }
+    }
+
+    if (priceMax) {
+      newArrayFilter.push({ label: "priceMax", value: priceMax });
+    }
+    if (priceMin) {
+      newArrayFilter.push({ label: "priceMin", value: priceMin });
+    }
+
+    newArrayFilter.map((filter, index) => {
+      const params = Object.values(filter);
+      if (index === 0) {
+        str += `?${params[0]}=${params[1]}`;
+      } else {
+        str += `&${params[0]}=${params[1]}`;
+      }
+    });
+
+    const API_URL = `https://lereacteur-vinted-api.herokuapp.com/offers/${str}`;
+    console.log(API_URL);
+    const response = await axios.get(API_URL);
+
+    setData(response.data);
+    setIsLoading(true);
+  };
   return (
     <header>
       <div className="header-left">
@@ -22,7 +82,15 @@ const Header = ({
         </Link>
         <div className="search">
           <FontAwesomeIcon icon={"magnifying-glass"} />
-          <input type="text" placeholder="Recherche des articles" />
+          <form onSubmit={search}>
+            <input
+              type="text"
+              placeholder="Recherche des articles"
+              onChange={(e) => {
+                setTitle(e.target.value);
+              }}
+            />
+          </form>
         </div>
       </div>
 

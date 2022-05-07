@@ -1,7 +1,7 @@
 object.keys pour affichage product details offer
 
 header logged : 
-<div className="header-right-container">
+        <div className="header-right-container">
           <div className="vendre">
             <button className="button-signup">Vends tes articles</button>
           </div>
