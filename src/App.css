@@ -362,7 +362,25 @@ header img{
 /* SEARCH */
 
 .container-search{
-    animation: 3s ease-in 1s infinite reverse both running slidein;
+    padding: 10px;
+    display: flex;
+}
+.container-search form{
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+}
+
+.range{
+    width: 80%;
+    margin: auto 20px;
+    color: #2DB0BA;
+}
+.valuesRange{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 20px;
 }
 
 /* FOOTER */

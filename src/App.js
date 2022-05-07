@@ -42,6 +42,7 @@ function App() {
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState();
   const [pageCount, setPageCount] = useState(1);
+  const [rangeValues, setRangeValues] = useState([25, 75]);
 
   // State cookie token => conditional rendering header logged
   const [token, setToken] = useState(Cookies.get("userToken") || null);
@@ -144,6 +145,10 @@ function App() {
           setPriceMin={setPriceMin}
           setSkip={setSkip}
           setLimit={setLimit}
+          fetchOffer={fetchOffer}
+          priceMax={priceMax}
+          values={rangeValues}
+          setValues={setRangeValues}
         />
       ) : null}
 
