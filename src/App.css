@@ -364,10 +364,12 @@ header img{
 .container-search{
     padding: 10px;
     display: flex;
+    align-items: center;
 }
 .container-search form{
     display: flex;
     justify-content: space-around;
+   
     width: 50%;
 }
 

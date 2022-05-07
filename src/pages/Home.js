@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import Top from "../components/Top";
 
 const Home = ({ isLoading, data, showLogin, showSignUp }) => {
-  console.log(showLogin);
-
   return (
     <div
       className={
