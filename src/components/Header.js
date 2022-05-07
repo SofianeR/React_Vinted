@@ -15,6 +15,8 @@ const Header = ({
   setUser,
   setTitle,
   fetchOffer,
+  setShowFilter,
+  showFilter,
 }) => {
   return (
     <header>
@@ -22,6 +24,7 @@ const Header = ({
         <Link to={"/"}>
           <img src={logo_Vinted} alt="logo de Vinted" />
         </Link>
+
         <div className="search">
           <FontAwesomeIcon icon={"magnifying-glass"} />
           <form
@@ -37,6 +40,13 @@ const Header = ({
               }}
             />
           </form>
+          <FontAwesomeIcon
+            icon={"filter"}
+            color={"#2DB0BA"}
+            onClick={() => {
+              setShowFilter(!showFilter);
+            }}
+          />
         </div>
       </div>
 

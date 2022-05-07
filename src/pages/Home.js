@@ -2,14 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Top from "../components/Top";
 
-const Home = ({ isLoading, data }) => {
+const Home = ({ isLoading, data, showLogin, showSignUp }) => {
+  console.log(showLogin);
+
   return (
-    <div className="container">
+    <div
+      className={
+        showLogin === true || showSignUp === true
+          ? "container modal-active"
+          : "container"
+      }>
       <Top />
       {isLoading === false ? (
         <p>Chargement des Offres</p>
       ) : (
-        <div className="container-offers">
+        <div className={"container-offers"}>
           {data.offers.map((offre, index) => {
             return (
               <Link

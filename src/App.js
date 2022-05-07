@@ -15,9 +15,13 @@ import ModalSignup from "./components/ModalSignup";
 import Search from "./components/Search";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faMagnifyingGlass, faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faMagnifyingGlass,
+  faUser,
+  faFilter,
+} from "@fortawesome/free-solid-svg-icons";
 import Footer from "./components/Footer";
-library.add(faMagnifyingGlass, faUser);
+library.add(faMagnifyingGlass, faUser, faFilter);
 
 function App() {
   // State Data => fetch and load data api
@@ -29,7 +33,7 @@ function App() {
   const [showModalSignUp, setShowModalSignUp] = useState(false);
 
   // State filter fetchOffer
-  const [filter, setFilter] = useState([]);
+  const [showFilter, setShowFilter] = useState(false);
   const [sort, setSort] = useState();
   const [title, setTitle] = useState("");
   const [priceMax, setPriceMax] = useState();
@@ -128,16 +132,20 @@ function App() {
         setUser={setUser}
         setTitle={setTitle}
         fetchOffer={fetchOffer}
+        showFilter={showFilter}
+        setShowFilter={setShowFilter}
       />
 
-      <Search
-        sort={sort}
-        setSort={setSort}
-        setPriceMax={setPriceMax}
-        setPriceMin={setPriceMin}
-        setSkip={setSkip}
-        setLimit={setLimit}
-      />
+      {showFilter === true ? (
+        <Search
+          sort={sort}
+          setSort={setSort}
+          setPriceMax={setPriceMax}
+          setPriceMin={setPriceMin}
+          setSkip={setSkip}
+          setLimit={setLimit}
+        />
+      ) : null}
 
       <ModalLogin
         showLogin={showModalLogin}
@@ -156,7 +164,15 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Home data={articles} isLoading={isLoading} />}
+          showSignUp={showModalSignUp}
+          element={
+            <Home
+              data={articles}
+              isLoading={isLoading}
+              showSignUp={showModalSignUp}
+              showLogin={showModalLogin}
+            />
+          }
         />
 
         <Route

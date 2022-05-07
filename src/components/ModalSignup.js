@@ -35,59 +35,61 @@ const ModalSignup = (props) => {
 
   if (props.showSignUp) {
     return (
-      <div className="signup">
-        <h1>S'inscrire</h1>
-        <form className="signup-form" onSubmit={signUp}>
-          <div className="input">
-            <input
-              type="text"
-              placeholder="Nom d'utilisateur"
-              onChange={(e) => {
-                setUserName(e.target.value);
-              }}
-            />
-            <input
-              type="text"
-              placeholder="Email"
-              onChange={(e) => {
-                setMail(e.target.value);
-              }}
-            />
-            <input
-              type="password"
-              placeholder="Mot de passe"
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-            />
-          </div>
-          <div className="checkbox-div">
-            <input
-              type="checkbox"
-              onChange={(e) => {
-                setNewsLetter(e.target.value);
-              }}
-            />
-            <p>S'inscrire à notre newletter</p>
-          </div>
-          <div className="warning">
-            <p>
-              En m'inscrivant je confirme avoir lu et accepté les Termes &
-              Conditions et Politique de Confidentialité de Vinted. Je confirme
-              avoir au moins 18 ans.
-            </p>
-          </div>
-          <div className="submit">
-            <input type="submit" value={"S'inscrire"} />
-            <Link
-              to={"/login"}
-              style={{
-                textDecoration: "none",
-              }}>
-              <p>Tu as déja un compte ? Connecte-toi</p>
-            </Link>
-          </div>
-        </form>
+      <div className="modal-container-signup">
+        <div className="modal-signup">
+          <h1>S'inscrire</h1>
+          <form className="modal-signup-form" onSubmit={signUp}>
+            <div className="input">
+              <input
+                type="text"
+                placeholder="Nom d'utilisateur"
+                onChange={(e) => {
+                  setUserName(e.target.value);
+                }}
+              />
+              <input
+                type="text"
+                placeholder="Email"
+                onChange={(e) => {
+                  setMail(e.target.value);
+                }}
+              />
+              <input
+                type="password"
+                placeholder="Mot de passe"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              />
+            </div>
+            <div className="checkbox-div">
+              <input
+                type="checkbox"
+                onChange={(e) => {
+                  setNewsLetter(e.target.value);
+                }}
+              />
+              <p>S'inscrire à notre newletter</p>
+            </div>
+            <div className="warning">
+              <p>
+                En m'inscrivant je confirme avoir lu et accepté les Termes &
+                Conditions et Politique de Confidentialité de Vinted. Je
+                confirme avoir au moins 18 ans.
+              </p>
+            </div>
+            <div className="submit">
+              <input type="submit" value={"S'inscrire"} />
+              <Link
+                to={"/login"}
+                style={{
+                  textDecoration: "none",
+                }}>
+                <p>Tu as déja un compte ? Connecte-toi</p>
+              </Link>
+            </div>
+          </form>
+        </div>
       </div>
     );
   } else {
