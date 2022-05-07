@@ -1,8 +1,6 @@
 import logo_Vinted from "../assets/img/Vinted_logo.png";
 
-import axios from "axios";
-
-// import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 // import Cookies from "js-cookie";
@@ -18,8 +16,6 @@ const Header = ({
   setTitle,
   fetchOffer,
 }) => {
-  console.log(fetchOffer);
-
   return (
     <header>
       <div className="header-left">

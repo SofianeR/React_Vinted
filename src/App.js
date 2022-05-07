@@ -16,6 +16,7 @@ import Search from "./components/Search";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faMagnifyingGlass, faUser } from "@fortawesome/free-solid-svg-icons";
+import Footer from "./components/Footer";
 library.add(faMagnifyingGlass, faUser);
 
 function App() {
@@ -23,18 +24,20 @@ function App() {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  // State Modal show hide
+  // State Modal show / hide
   const [showModalLogin, setShowModalLogin] = useState(false);
   const [showModalSignUp, setShowModalSignUp] = useState(false);
 
-  // State filter search
+  // State filter fetchOffer
   const [filter, setFilter] = useState([]);
   const [sort, setSort] = useState();
   const [title, setTitle] = useState("");
   const [priceMax, setPriceMax] = useState();
   const [priceMin, setPriceMin] = useState();
   const [skip, setSkip] = useState();
-  const [limit, setLimit] = useState();
+  const [limit, setLimit] = useState(10);
+  const [page, setPage] = useState();
+  const [pageCount, setPageCount] = useState(1);
 
   // State cookie token => conditional rendering header logged
   const [token, setToken] = useState(Cookies.get("userToken") || null);
@@ -51,7 +54,7 @@ function App() {
   };
 
   // Function to fetchData on landing page & to fetchData with filters (Search bar)
-  const fetchOffer = async (e) => {
+  const fetchOffer = async () => {
     setIsLoading(false);
 
     let str = "";
@@ -59,7 +62,6 @@ function App() {
 
     // setFilter(newArrayFilter);
     // newArrayFilter = [...filter];
-
     if (title !== "") {
       newArrayFilter.push({ label: "title", value: title });
       // setFilter(newArrayFilter);
@@ -82,10 +84,17 @@ function App() {
 
     if (limit) {
       newArrayFilter.push({ lablel: "limit", value: limit });
+    } else {
+      newArrayFilter.push({ lablel: "limit", value: 10 });
+    }
+
+    if (page) {
+      newArrayFilter.push({ label: "page", value: page });
     }
 
     newArrayFilter.map((filter, index) => {
       const params = Object.values(filter);
+
       if (index === 0) {
         str += `?${params[0]}=${params[1]}`;
       } else {
@@ -98,8 +107,10 @@ function App() {
     console.log(API_URL);
     const response = await axios.get(API_URL);
 
+    setPageCount(Math.ceil(response.data.count / limit));
     setArticles(response.data);
     setIsLoading(true);
+    // setLimit(10);
   };
 
   useEffect(() => {
@@ -115,6 +126,7 @@ function App() {
         setShowSignUp={setShowModalSignUp}
         stateToken={token}
         setUser={setUser}
+        setTitle={setTitle}
         fetchOffer={fetchOffer}
       />
 
@@ -158,6 +170,13 @@ function App() {
 
         {/* <Route path="/modal" element={<Modal show={true} />} /> */}
       </Routes>
+      <Footer
+        pageCount={pageCount}
+        page={page}
+        setPage={setPage}
+        fetchOffer={fetchOffer}
+        isLoading={isLoading}
+      />
     </Router>
   );
 }

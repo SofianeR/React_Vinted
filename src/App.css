@@ -325,7 +325,17 @@ header img{
     border: none;
 }
 
-
+/* FOOTER */
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contact{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 
 
