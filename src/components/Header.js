@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 
 // import Cookies from "js-cookie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
 
 const Header = ({
   showLogin,
@@ -16,64 +15,11 @@ const Header = ({
   setShowSignUp,
   stateToken,
   setUser,
-  filter,
-  setFilter,
-  articles,
-  setData,
-  setIsLoading,
-  sort,
-  title,
   setTitle,
-  priceMin,
-  priceMax,
+  fetchOffer,
 }) => {
-  const search = async (e) => {
-    e.preventDefault();
+  console.log(fetchOffer);
 
-    setIsLoading(false);
-
-    let str = "";
-    let newArrayFilter = [];
-
-    setFilter(newArrayFilter);
-    // newArrayFilter = [...filter];
-
-    if (title !== "") {
-      newArrayFilter.push({ label: "title", value: title });
-      setFilter(newArrayFilter);
-    }
-
-    if (sort) {
-      if (sort === true) {
-        newArrayFilter.push({ label: "sort", value: "price-desc" });
-      } else {
-        newArrayFilter.push({ label: "sort", value: "price-asc" });
-      }
-    }
-
-    if (priceMax) {
-      newArrayFilter.push({ label: "priceMax", value: priceMax });
-    }
-    if (priceMin) {
-      newArrayFilter.push({ label: "priceMin", value: priceMin });
-    }
-
-    newArrayFilter.map((filter, index) => {
-      const params = Object.values(filter);
-      if (index === 0) {
-        str += `?${params[0]}=${params[1]}`;
-      } else {
-        str += `&${params[0]}=${params[1]}`;
-      }
-    });
-
-    const API_URL = `https://lereacteur-vinted-api.herokuapp.com/offers/${str}`;
-    console.log(API_URL);
-    const response = await axios.get(API_URL);
-
-    setData(response.data);
-    setIsLoading(true);
-  };
   return (
     <header>
       <div className="header-left">
@@ -82,7 +28,11 @@ const Header = ({
         </Link>
         <div className="search">
           <FontAwesomeIcon icon={"magnifying-glass"} />
-          <form onSubmit={search}>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              fetchOffer();
+            }}>
             <input
               type="text"
               placeholder="Recherche des articles"

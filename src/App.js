@@ -5,18 +5,17 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 
+import Header from "./components/Header";
 import Home from "./pages/Home";
 import Offer from "./pages/Offer";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import ModalLogin from "./components/ModalLogin";
 import ModalSignup from "./components/ModalSignup";
-
-import Header from "./components/Header";
+import Search from "./components/Search";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faMagnifyingGlass, faUser } from "@fortawesome/free-solid-svg-icons";
-import Search from "./components/Search";
 library.add(faMagnifyingGlass, faUser);
 
 function App() {
@@ -34,6 +33,8 @@ function App() {
   const [title, setTitle] = useState("");
   const [priceMax, setPriceMax] = useState();
   const [priceMin, setPriceMin] = useState();
+  const [skip, setSkip] = useState();
+  const [limit, setLimit] = useState();
 
   // State cookie token => conditional rendering header logged
   const [token, setToken] = useState(Cookies.get("userToken") || null);
@@ -49,15 +50,60 @@ function App() {
     setToken(token);
   };
 
+  // Function to fetchData on landing page & to fetchData with filters (Search bar)
+  const fetchOffer = async (e) => {
+    setIsLoading(false);
+
+    let str = "";
+    let newArrayFilter = [];
+
+    // setFilter(newArrayFilter);
+    // newArrayFilter = [...filter];
+
+    if (title !== "") {
+      newArrayFilter.push({ label: "title", value: title });
+      // setFilter(newArrayFilter);
+    }
+
+    if (sort) {
+      if (sort === true) {
+        newArrayFilter.push({ label: "sort", value: "price-desc" });
+      } else {
+        newArrayFilter.push({ label: "sort", value: "price-asc" });
+      }
+    }
+
+    if (priceMax) {
+      newArrayFilter.push({ label: "priceMax", value: priceMax });
+    }
+    if (priceMin) {
+      newArrayFilter.push({ label: "priceMin", value: priceMin });
+    }
+
+    if (limit) {
+      newArrayFilter.push({ lablel: "limit", value: limit });
+    }
+
+    newArrayFilter.map((filter, index) => {
+      const params = Object.values(filter);
+      if (index === 0) {
+        str += `?${params[0]}=${params[1]}`;
+      } else {
+        str += `&${params[0]}=${params[1]}`;
+      }
+      return str;
+    });
+
+    const API_URL = `https://lereacteur-vinted-api.herokuapp.com/offers/${str}`;
+    console.log(API_URL);
+    const response = await axios.get(API_URL);
+
+    setArticles(response.data);
+    setIsLoading(true);
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get(
-        "https://lereacteur-vinted-api.herokuapp.com/offers"
-      );
-      setArticles(response.data);
-      setIsLoading(true);
-    };
-    fetchData();
+    fetchOffer();
   }, []);
 
   return (
@@ -69,16 +115,7 @@ function App() {
         setShowSignUp={setShowModalSignUp}
         stateToken={token}
         setUser={setUser}
-        filter={filter}
-        setFilter={setFilter}
-        articles={articles}
-        setData={setArticles}
-        setIsLoading={setIsLoading}
-        title={title}
-        setTitle={setTitle}
-        sort={sort}
-        priceMin={priceMin}
-        priceMax={priceMax}
+        fetchOffer={fetchOffer}
       />
 
       <Search
@@ -86,6 +123,8 @@ function App() {
         setSort={setSort}
         setPriceMax={setPriceMax}
         setPriceMin={setPriceMin}
+        setSkip={setSkip}
+        setLimit={setLimit}
       />
 
       <ModalLogin

@@ -1,4 +1,4 @@
-const Search = ({ sort, setSort, setPriceMax, setPriceMin }) => {
+const Search = ({ sort, setSort, setPriceMax, setPriceMin, setLimit }) => {
   return (
     <div className="container-search">
       <input
@@ -19,6 +19,13 @@ const Search = ({ sort, setSort, setPriceMax, setPriceMin }) => {
         placeholder="priceMin"
         onChange={(e) => {
           setPriceMin(e.target.value);
+        }}
+      />
+      <input
+        type="number"
+        placeholder="limit"
+        onChange={(e) => {
+          setLimit(e.target.value);
         }}
       />
     </div>
