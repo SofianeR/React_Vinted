@@ -42,7 +42,7 @@ function App() {
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState();
   const [pageCount, setPageCount] = useState(1);
-  const [rangeValues, setRangeValues] = useState([25, 75]);
+  const [rangeValues, setRangeValues] = useState([0, 1000]);
 
   // State cookie token => conditional rendering header logged
   const [token, setToken] = useState(Cookies.get("userToken") || null);
@@ -65,8 +65,8 @@ function App() {
     let str = "";
     let newArrayFilter = [];
 
-    // setFilter(newArrayFilter);
     // newArrayFilter = [...filter];
+    // setFilter(newArrayFilter);
     if (title !== "") {
       newArrayFilter.push({ label: "title", value: title });
       // setFilter(newArrayFilter);
@@ -79,14 +79,12 @@ function App() {
         newArrayFilter.push({ label: "sort", value: "price-asc" });
       }
     }
-
-    if (priceMax) {
-      newArrayFilter.push({ label: "priceMax", value: priceMax });
+    if (rangeValues[0]) {
+      newArrayFilter.push({ label: "priceMin", value: rangeValues[0] });
     }
-    if (priceMin) {
-      newArrayFilter.push({ label: "priceMin", value: priceMin });
+    if (rangeValues[1]) {
+      newArrayFilter.push({ label: "priceMax", value: rangeValues[1] });
     }
-
     if (limit) {
       newArrayFilter.push({ lablel: "limit", value: limit });
     } else {
@@ -109,7 +107,6 @@ function App() {
     });
 
     const API_URL = `https://lereacteur-vinted-api.herokuapp.com/offers/${str}`;
-    console.log(API_URL);
     const response = await axios.get(API_URL);
 
     setPageCount(Math.ceil(response.data.count / limit));

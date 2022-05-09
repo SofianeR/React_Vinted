@@ -296,6 +296,7 @@ header img{
 
 .modal-active{
     opacity: 0.1;
+
 }
 .modal{
     display: flex;
@@ -362,27 +363,43 @@ header img{
 /* SEARCH */
 
 .container-search{
-    padding: 10px;
+    /* padding: 10px; */
     display: flex;
-    align-items: center;
+    justify-self: flex-start;
+    position: absolute;
+    top: 10vh;
+    left:20vw;
+    z-index: 100000;
+    width: 30%;
+    background-color: white;
+    border-radius: 4px;
+    
 }
 .container-search form{
     display: flex;
-    justify-content: space-around;
-   
-    width: 50%;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
 }
 
 .range{
-    width: 80%;
+    width: 100%;
     margin: auto 20px;
     color: #2DB0BA;
 }
-.valuesRange{
+.valueRange{
+    margin-top: -25px;
+    background-color: #2DB0BA;
+    height: 10px;
+    padding: 3px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    height: 20px;
+    border-radius: 2px;
+
+}
+.valueRange p{
+    font-size: 10px;
+    color: white;
 }
 
 /* FOOTER */

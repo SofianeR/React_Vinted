@@ -13,10 +13,12 @@ const Search = ({
 }) => {
   const STEP = 1;
   const MIN = 0;
-  const MAX = 100;
+  const MAX = 1000;
+
   const handleCheckBox = () => {
     setSort(!sort);
     fetchOffer();
+    console.log(sort);
   };
   return (
     <div className="container-search">
@@ -32,7 +34,6 @@ const Search = ({
               setValues(values);
             }}
             renderTrack={({ props, children }) => (
-              // eslint-disable-next-line jsx-a11y/no-static-element-interactions
               <div
                 onMouseDown={props.onMouseDown}
                 onTouchStart={props.onTouchStart}
@@ -42,9 +43,6 @@ const Search = ({
                   display: "flex",
                   width: "100%",
                 }}>
-                {/* {values.map((price, index) => {
-                  return <p key={index}>{price}</p>;
-                })} */}
                 <div
                   ref={props.ref}
                   style={{
@@ -68,8 +66,8 @@ const Search = ({
                 {...props}
                 style={{
                   ...props.style,
-                  height: "20px",
-                  width: "20px",
+                  height: "10px",
+                  width: "10px",
                   borderRadius: "50%",
                   backgroundColor: "#2DB0BA",
                   display: "flex",
@@ -77,14 +75,16 @@ const Search = ({
                   alignItems: "center",
                   boxShadow: "0px 2px 6px #AAA",
                 }}>
+                <div className="valueRange">
+                  <p>{values[props.key]}</p>
+                </div>
                 <div
                   style={{
                     height: "5px",
                     width: "5px",
-                    backgroundColor: isDragged ? "#548BF4" : "#CCC",
+                    // backgroundColor: isDragged ? "#548BF4" : "#CCC",
                   }}
                 />
-                <p>{values[1]}</p>
               </div>
             )}
           />

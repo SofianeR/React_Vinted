@@ -13,7 +13,6 @@ const Footer = ({ page, setPage, pageCount, isLoading, fetchOffer }) => {
         key={i}
         onClick={() => {
           setPage(i + 1);
-          console.log(page);
         }}>
         {i + 1}
       </button>
