@@ -24,7 +24,9 @@ const Publish = () => {
     formData.append("city", spotPublish);
     formData.append("brand", brandPublish);
     formData.append("size", sizePublish);
+    formData.append("exchange", exchangePublish);
     formData.append("color", colorPublish);
+
     formData.append("picture", picture);
 
     const token = Cookies.get("userToken");
@@ -38,7 +40,6 @@ const Publish = () => {
         },
       }
     );
-    console.log(result.data);
   };
 
   return (

@@ -32,6 +32,7 @@ function App() {
   // State Modal show / hide
   const [showModalLogin, setShowModalLogin] = useState(false);
   const [showModalSignUp, setShowModalSignUp] = useState(false);
+  const [loginFromSell, setLoginFromSell] = useState(false);
 
   // State filter fetchOffer
   const [showFilter, setShowFilter] = useState(false);
@@ -98,7 +99,6 @@ function App() {
 
     newArrayFilter.map((filter, index) => {
       const params = Object.values(filter);
-      console.log("apierea", params);
       if (index === 0) {
         str += `?${params[0]}=${params[1]}`;
       } else {
@@ -127,6 +127,8 @@ function App() {
         setShowLogin={setShowModalLogin}
         showSignUp={showModalSignUp}
         setShowSignUp={setShowModalSignUp}
+        setLoginFromSell={setLoginFromSell}
+        loginFromSell={loginFromSell}
         stateToken={token}
         setUser={setUser}
         setTitle={setTitle}
@@ -156,6 +158,8 @@ function App() {
         setShowLogin={setShowModalLogin}
         setShowSignUp={setShowModalSignUp}
         setUser={setUser}
+        setLoginFromSell={setLoginFromSell}
+        loginFromSell={loginFromSell}
       />
 
       <ModalSignup

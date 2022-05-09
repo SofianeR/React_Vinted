@@ -23,10 +23,12 @@ const ModalSignup = (props) => {
       );
 
       props.setUser(response.data.token);
-      alert(
-        `Nouvel utilisateur bien enregistré : 
-        Bienvenue ${response.data.account.username}`
-      );
+
+      // alert(
+      //   `Nouvel utilisateur bien enregistré :
+      //   Bienvenue ${response.data.account.username}`
+      // );
+
       props.setShowSignUp(false);
     } catch (error) {
       alert(error.message);

@@ -17,6 +17,8 @@ const Header = ({
   fetchOffer,
   setShowFilter,
   showFilter,
+  setLoginFromSell,
+  loginFromSell,
 }) => {
   return (
     <header>
@@ -106,6 +108,7 @@ const Header = ({
               className="button-signup"
               onClick={() => {
                 setShowLogin(!showLogin);
+                setLoginFromSell(!loginFromSell);
               }}>
               Vends tes articles
             </button>

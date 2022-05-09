@@ -3,7 +3,15 @@ import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
-const ModalLogin = (props) => {
+const ModalLogin = ({
+  showLogin,
+  showSignup,
+  setShowLogin,
+  setShowSignUp,
+  setUser,
+  setLoginFromSell,
+  loginFromSell,
+}) => {
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -20,17 +28,24 @@ const ModalLogin = (props) => {
         }
       );
       // Cookies.set("token", response.data.token);
-      props.setUser(response.data.token);
+      setUser(response.data.token);
 
-      props.setShowLogin(false);
-      alert(`Bienvenue ${response.data.account.username}`);
-      navigate("/publish");
+      setShowLogin(false);
+
+      // alert(`Bienvenue ${response.data.account.username}`);
+
+      if (loginFromSell === true) {
+        navigate("/publish");
+        setLoginFromSell(!loginFromSell);
+      } else {
+        navigate("/");
+      }
     } catch (error) {
       alert(error.message);
     }
   };
 
-  if (props.showLogin) {
+  if (showLogin) {
     return (
       <div className="modal">
         <h1>Se Connecter</h1>
@@ -56,8 +71,8 @@ const ModalLogin = (props) => {
             <input type="submit" value={"Se connecter"} />
             <p
               onClick={() => {
-                props.setShowLogin(!props.showLogin);
-                props.setShowSignUp(!props.showSignup);
+                setShowLogin(!showLogin);
+                setShowSignUp(!showSignup);
               }}>
               Pas encore de compte ? Inscris-toi !
             </p>
