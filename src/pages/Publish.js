@@ -3,6 +3,7 @@ import Cookies from "js-cookie";
 import Dropzone from "react-dropzone";
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Publish = () => {
   const [titlePublish, setTitlePublish] = useState("");
@@ -16,36 +17,43 @@ const Publish = () => {
   const [exchangePublish, setExchangePublish] = useState(false);
   const [picture, setPicture] = useState([]);
 
+  const navigate = useNavigate();
+
   const publishOffer = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("title", titlePublish);
-    formData.append("description", descriptionPublish);
-    formData.append("price", pricePublish);
-    formData.append("condition", statePublish);
-    formData.append("city", spotPublish);
-    formData.append("brand", brandPublish);
-    formData.append("size", sizePublish);
-    formData.append("exchange", exchangePublish);
-    formData.append("color", colorPublish);
-    formData.append("picture", picture[0]);
+    try {
+      const formData = new FormData();
+      formData.append("title", titlePublish);
+      formData.append("description", descriptionPublish);
+      formData.append("price", pricePublish);
+      formData.append("condition", statePublish);
+      formData.append("city", spotPublish);
+      formData.append("brand", brandPublish);
+      formData.append("size", sizePublish);
+      formData.append("exchange", exchangePublish);
+      formData.append("color", colorPublish);
+      formData.append("picture", picture[0]);
 
-    // picture.map((picture, index) => {
-    //   formData.append(`picture[${index}]`, picture);
-    // });
+      // picture.map((picture, index) => {
+      //   formData.append(`picture[${index}]`, picture);
+      // });
 
-    const token = Cookies.get("userToken");
+      const token = Cookies.get("userToken");
 
-    const result = await axios.post(
-      "https://lereacteur-vinted-api.herokuapp.com/offer/publish",
-      formData,
-      {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    console.log(result.data);
+      const response = await axios.post(
+        "https://lereacteur-vinted-api.herokuapp.com/offer/publish",
+        formData,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      alert("Votre annonce a bien été ajoutée");
+      navigate("/");
+    } catch (error) {
+      console.log(error.response);
+    }
   };
 
   return (
