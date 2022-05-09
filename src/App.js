@@ -8,11 +8,13 @@ import Cookies from "js-cookie";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import Offer from "./pages/Offer";
-import Signup from "./pages/Signup";
-import Login from "./pages/Login";
+import Publish from "./pages/Publish";
 import ModalLogin from "./components/ModalLogin";
 import ModalSignup from "./components/ModalSignup";
 import Search from "./components/Search";
+import Footer from "./components/Footer";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -20,7 +22,6 @@ import {
   faUser,
   faFilter,
 } from "@fortawesome/free-solid-svg-icons";
-import Footer from "./components/Footer";
 library.add(faMagnifyingGlass, faUser, faFilter);
 
 function App() {
@@ -36,13 +37,13 @@ function App() {
   const [showFilter, setShowFilter] = useState(false);
   const [sort, setSort] = useState();
   const [title, setTitle] = useState("");
-  // const [priceMax, setPriceMax] = useState();
-  // const [priceMin, setPriceMin] = useState();
-  // const [skip, setSkip] = useState();
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState();
   const [pageCount, setPageCount] = useState(1);
-  const [rangeValues, setRangeValues] = useState([0, 1000]);
+  const [rangeValues, setRangeValues] = useState([0, 500]);
+  // const [priceMax, setPriceMax] = useState();
+  // const [priceMin, setPriceMin] = useState();
+  // const [skip, setSkip] = useState();
 
   // State cookie token => conditional rendering header logged
   const [token, setToken] = useState(Cookies.get("userToken") || null);
@@ -97,7 +98,7 @@ function App() {
 
     newArrayFilter.map((filter, index) => {
       const params = Object.values(filter);
-
+      console.log("apierea", params);
       if (index === 0) {
         str += `?${params[0]}=${params[1]}`;
       } else {
@@ -110,9 +111,9 @@ function App() {
     const response = await axios.get(API_URL);
 
     setPageCount(Math.ceil(response.data.count / limit));
+
     setArticles(response.data);
     setIsLoading(true);
-    // setLimit(10);
   };
 
   useEffect(() => {
@@ -151,6 +152,7 @@ function App() {
 
       <ModalLogin
         showLogin={showModalLogin}
+        showSignup={showModalSignUp}
         setShowLogin={setShowModalLogin}
         setShowSignUp={setShowModalSignUp}
         setUser={setUser}
@@ -158,6 +160,7 @@ function App() {
 
       <ModalSignup
         showSignUp={showModalSignUp}
+        showLogin={showModalLogin}
         setShowSignUp={setShowModalSignUp}
         setShowLogin={setShowModalLogin}
         setUser={setUser}
@@ -173,6 +176,10 @@ function App() {
               isLoading={isLoading}
               showSignUp={showModalSignUp}
               showLogin={showModalLogin}
+              pageCount={pageCount}
+              page={page}
+              setPage={setPage}
+              fetchOffer={fetchOffer}
             />
           }
         />
@@ -182,19 +189,14 @@ function App() {
           element={<Offer data={articles} axios={axios} />}
         />
 
+        <Route path="/publish" element={<Publish />} />
+
         <Route path="/signup" element={<Signup />} />
 
         <Route path="/login" element={<Login />} />
 
         {/* <Route path="/modal" element={<Modal show={true} />} /> */}
       </Routes>
-      <Footer
-        pageCount={pageCount}
-        page={page}
-        setPage={setPage}
-        fetchOffer={fetchOffer}
-        isLoading={isLoading}
-      />
     </Router>
   );
 }

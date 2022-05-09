@@ -53,7 +53,9 @@ const Header = ({
       {stateToken ? (
         <div className="header-right-container">
           <div className="vendre">
-            <button className="button-signup">Vends tes articles</button>
+            <Link to={"/publish"}>
+              <button className="button-signup">Vends tes articles</button>
+            </Link>
           </div>
           <div className="user-logged">
             <FontAwesomeIcon
@@ -99,7 +101,15 @@ const Header = ({
             {/* </Link> */}
           </div>
           <div className="vendre">
-            <button className="button-signup">Vends tes articles</button>
+            {/* <Link to={"/login"}> */}
+            <button
+              className="button-signup"
+              onClick={() => {
+                setShowLogin(!showLogin);
+              }}>
+              Vends tes articles
+            </button>
+            {/* </Link> */}
           </div>
         </div>
       )}

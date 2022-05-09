@@ -80,13 +80,19 @@ const ModalSignup = (props) => {
             </div>
             <div className="submit">
               <input type="submit" value={"S'inscrire"} />
-              <Link
+              {/* <Link
                 to={"/login"}
                 style={{
                   textDecoration: "none",
+                }}> */}
+              <p
+                onClick={() => {
+                  props.setShowSignUp(false);
+                  props.setShowLogin(true);
                 }}>
-                <p>Tu as déja un compte ? Connecte-toi</p>
-              </Link>
+                Tu as déja un compte ? Connecte-toi
+              </p>
+              {/* </Link> */}
             </div>
           </form>
         </div>

@@ -414,5 +414,82 @@ header img{
     align-items: center;
 }
 
+/* PUBLISH */
+
+.container-form-publish{
+    background-color: #EBEDEE;
+}
+.container-form-publish h2{
+    margin-top: 0;
+    padding-top: 20px;
+}
+.container-all-publish{
+    width: 75%;
+    margin: 0 auto;
+    padding-bottom: 50px;
+}
+.container-publish-picture{
+    padding: 30px;
+    background-color: white;
+    border: solid lightgray 1px;
+
+}
+
+.container-publish{
+    border: solid lightgray 1px;
+    margin: 20px 0;
+    background-color: white;
+    padding: 0 20px;
+}
+
+.picture{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 125px;
+    border: solid lightgray 1px;
+}
+.picture button{
+    padding: 10px;
+    border-radius: 2px;
+    border: solid 2px #2DB0BA;
+    background-color: white;
+    color: #2DB0BA;
+}
+.input-fields{
+    border-bottom: solid 1px lightgray;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.input-fields p{
+    font-weight: bold;
+}
+.input-fields input, textarea{
+    border: none;
+    border-bottom: lightgray solid 1px;
+    width: 50%;
+}
+.input-fields input, textarea:focus{
+    outline: none;
+}
+
+.checkbox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.submit-publish{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.submit-publish input{
+    padding: 10px;
+    border: none;
+    background-color: #2DB0BA;
+    color: white;
+    border-radius: 5px;
+}
 
 

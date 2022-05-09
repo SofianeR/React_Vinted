@@ -3,22 +3,21 @@ import { Range, getTrackBackground } from "react-range";
 const Search = ({
   sort,
   setSort,
-  // setPriceMax,
-  // setPriceMin,
-  setLimit,
   fetchOffer,
-  priceMax,
   values,
   setValues,
+  // priceMax,
+  // setPriceMax,
+  // setPriceMin,
+  // setLimit,
 }) => {
   const STEP = 1;
   const MIN = 0;
-  const MAX = 1000;
+  const MAX = 500;
 
   const handleCheckBox = () => {
     setSort(!sort);
     fetchOffer();
-    console.log(sort);
   };
   return (
     <div className="container-search">

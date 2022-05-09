@@ -1,9 +1,13 @@
-import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import axios from "axios";
 
 const ModalLogin = (props) => {
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const login = async (e) => {
     e.preventDefault();
@@ -20,6 +24,7 @@ const ModalLogin = (props) => {
 
       props.setShowLogin(false);
       alert(`Bienvenue ${response.data.account.username}`);
+      navigate("/publish");
     } catch (error) {
       alert(error.message);
     }
@@ -49,8 +54,13 @@ const ModalLogin = (props) => {
 
           <div className="submit-login">
             <input type="submit" value={"Se connecter"} />
-
-            <p>Pas encore de compte ? Inscris-toi !</p>
+            <p
+              onClick={() => {
+                props.setShowLogin(!props.showLogin);
+                props.setShowSignUp(!props.showSignup);
+              }}>
+              Pas encore de compte ? Inscris-toi !
+            </p>
           </div>
         </form>
       </div>

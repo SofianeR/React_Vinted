@@ -1,8 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Top from "../components/Top";
+import Footer from "../components/Footer";
 
-const Home = ({ isLoading, data, showLogin, showSignUp }) => {
+const Home = ({
+  isLoading,
+  data,
+  showLogin,
+  showSignUp,
+  pageCount,
+  page,
+  setPage,
+  fetchOffer,
+}) => {
   return (
     <div
       className={
@@ -49,6 +59,13 @@ const Home = ({ isLoading, data, showLogin, showSignUp }) => {
           })}
         </div>
       )}
+      <Footer
+        pageCount={pageCount}
+        page={page}
+        setPage={setPage}
+        fetchOffer={fetchOffer}
+        isLoading={isLoading}
+      />
     </div>
   );
 };

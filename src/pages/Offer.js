@@ -28,7 +28,7 @@ const Offer = () => {
         ) : null}
       </div>
       <div className="offer-right">
-        {offer.product_price ? <span>{offer.product_price}</span> : null}
+        {offer.product_price ? <span>{offer.product_price} €</span> : null}
 
         <div className="top-description">
           <div className="product_details-left">
