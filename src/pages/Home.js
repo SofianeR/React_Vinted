@@ -12,6 +12,8 @@ const Home = ({
   page,
   setPage,
   fetchOffer,
+  setLogin,
+  setSignup,
 }) => {
   return (
     <div
@@ -20,11 +22,16 @@ const Home = ({
           ? "container modal-active"
           : "container"
       }>
-      <Top />
+      <Top setLogin={setLogin} setSignup={setSignup} />
       {isLoading === false ? (
         <p>Chargement des Offres</p>
       ) : (
-        <div className={"container-offers"}>
+        <div
+          className={"container-offers"}
+          onClick={() => {
+            setLogin(false);
+            setSignup(false);
+          }}>
           {data.offers.map((offre, index) => {
             return (
               <Link

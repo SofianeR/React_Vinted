@@ -15,6 +15,7 @@ import Search from "./components/Search";
 import Footer from "./components/Footer";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import Test from "./pages/test";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -180,6 +181,8 @@ function App() {
               isLoading={isLoading}
               showSignUp={showModalSignUp}
               showLogin={showModalLogin}
+              setLogin={setShowModalLogin}
+              setSignup={setShowModalSignUp}
               pageCount={pageCount}
               page={page}
               setPage={setPage}
@@ -195,10 +198,11 @@ function App() {
 
         <Route path="/publish" element={<Publish />} />
 
-        <Route path="/signup" element={<Signup />} />
+        {/* <Route path="/signup" element={<Signup />} /> */}
 
-        <Route path="/login" element={<Login />} />
+        {/* <Route path="/login" element={<Login />} /> */}
 
+        {/* <Route path="/test" element={<Test />} /> */}
         {/* <Route path="/modal" element={<Modal show={true} />} /> */}
       </Routes>
     </Router>

@@ -492,4 +492,9 @@ header img{
     border-radius: 5px;
 }
 
+.picturePublish{
+    border: solid red 2px;
+    height: 200px;
+}
+
 

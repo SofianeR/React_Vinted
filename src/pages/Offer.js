@@ -9,14 +9,20 @@ const Offer = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get(
-        `https://lereacteur-vinted-api.herokuapp.com/offer/${id}`
-      );
-      setOffer(response.data);
-      setIsLoading(true);
-    };
-    fetchData();
+    try {
+      const fetchData = async () => {
+        const response = await axios.get(
+          `https://lereacteur-vinted-api.herokuapp.com/offer/${id}`
+        );
+        console.log(response.data);
+        setOffer(response.data);
+        setIsLoading(true);
+      };
+
+      fetchData();
+    } catch (error) {
+      console.log(error.response);
+    }
   }, [id]);
   return isLoading === false ? (
     <p>isLoading</p>
@@ -63,12 +69,12 @@ const Offer = () => {
           ) : null}
         </div>
         <div className="owner">
-          {offer.owner.account ? (
+          {offer.owner.account.avatar && (
             <img src={offer.owner.account.avatar.secure_url} alt="" />
-          ) : null}
-          {offer.owner.account.username ? (
+          )}
+          {offer.owner.account.username && (
             <p>{offer.owner.account.username}</p>
-          ) : null}
+          )}
         </div>
         <button>Acheter</button>
       </div>

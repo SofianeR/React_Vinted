@@ -1,5 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
+import Dropzone from "react-dropzone";
+
 import { useState } from "react";
 
 const Publish = () => {
@@ -12,7 +14,7 @@ const Publish = () => {
   const [spotPublish, setSpotPublish] = useState("");
   const [pricePublish, setPricePublish] = useState("");
   const [exchangePublish, setExchangePublish] = useState(false);
-  const [picture, setPicture] = useState(null);
+  const [picture, setPicture] = useState([]);
 
   const publishOffer = async (e) => {
     e.preventDefault();
@@ -26,8 +28,11 @@ const Publish = () => {
     formData.append("size", sizePublish);
     formData.append("exchange", exchangePublish);
     formData.append("color", colorPublish);
+    formData.append("picture", picture[0]);
 
-    formData.append("picture", picture);
+    // picture.map((picture, index) => {
+    //   formData.append(`picture[${index}]`, picture);
+    // });
 
     const token = Cookies.get("userToken");
 
@@ -40,22 +45,50 @@ const Publish = () => {
         },
       }
     );
+    console.log(result.data);
   };
 
   return (
     <div className="container-form-publish">
+      <button
+        onClick={() => {
+          picture.map((item) => {
+            console.log(Object.keys(item), item);
+          });
+        }}>
+        CONSOLE
+      </button>
       <div className="container-all-publish">
         <h2>Vends ton article</h2>
         <form onSubmit={publishOffer}>
           <div className="container-publish-picture">
             <div className="picture">
-              <input
+              {/* <input
                 type="file"
                 name="pictureAdd"
                 onChange={(e) => {
                   setPicture(e.target.files[0]);
                 }}
-              />
+              /> */}
+              <Dropzone
+                onDrop={(acceptedFiles) => {
+                  const files = [...picture];
+
+                  acceptedFiles.map((item) => {
+                    files.push(item);
+                  });
+                  // console.log(files);
+                  setPicture(acceptedFiles);
+                }}>
+                {({ getRootProps, getInputProps }) => (
+                  <section>
+                    <div {...getRootProps()}>
+                      <input {...getInputProps()} />
+                      <button>✚ Ajouter une photo</button>
+                    </div>
+                  </section>
+                )}
+              </Dropzone>
             </div>
           </div>
           <div className="container-publish">
