@@ -36,9 +36,9 @@ function App() {
   const [showFilter, setShowFilter] = useState(false);
   const [sort, setSort] = useState();
   const [title, setTitle] = useState("");
-  const [priceMax, setPriceMax] = useState();
-  const [priceMin, setPriceMin] = useState();
-  const [skip, setSkip] = useState();
+  // const [priceMax, setPriceMax] = useState();
+  // const [priceMin, setPriceMin] = useState();
+  // const [skip, setSkip] = useState();
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState();
   const [pageCount, setPageCount] = useState(1);
@@ -138,12 +138,12 @@ function App() {
         <Search
           sort={sort}
           setSort={setSort}
-          setPriceMax={setPriceMax}
-          setPriceMin={setPriceMin}
-          setSkip={setSkip}
+          // setPriceMax={setPriceMax}
+          // priceMax={priceMax}
+          // setPriceMin={setPriceMin}
+          // setSkip={setSkip}
           setLimit={setLimit}
           fetchOffer={fetchOffer}
-          priceMax={priceMax}
           values={rangeValues}
           setValues={setRangeValues}
         />

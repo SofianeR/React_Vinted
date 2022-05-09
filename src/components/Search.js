@@ -1,10 +1,10 @@
-import { useState } from "react";
 import { Range, getTrackBackground } from "react-range";
+
 const Search = ({
   sort,
   setSort,
-  setPriceMax,
-  setPriceMin,
+  // setPriceMax,
+  // setPriceMin,
   setLimit,
   fetchOffer,
   priceMax,

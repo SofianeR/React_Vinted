@@ -1,26 +1,26 @@
-object.keys pour affichage product details offer
+// object.keys pour affichage product details offer
 
-header logged : 
-        <div className="header-right-container">
-          <div className="vendre">
-            <button className="button-signup">Vends tes articles</button>
-          </div>
-          <div className="user-logged">
-            <FontAwesomeIcon
-              icon={"user"}
-              size={"2x"}
-              color={"#94D5DA"}
-              onClick={() => {
-                Cookies.remove("token");
-                alert("click");
-              }}
-            />
-          </div>
-        </div>
+// header logged : 
+//         <div className="header-right-container">
+//           <div className="vendre">
+//             <button className="button-signup">Vends tes articles</button>
+//           </div>
+//           <div className="user-logged">
+//             <FontAwesomeIcon
+//               icon={"user"}
+//               size={"2x"}
+//               color={"#94D5DA"}
+//               onClick={() => {
+//                 Cookies.remove("token");
+//                 alert("click");
+//               }}
+//             />
+//           </div>
+//         </div>
 
 
 
- header pre return : 
+//  header pre return : 
    // const [cookies, setCookies] = useState(false);
   // console.log(cookies);
   // useEffect(() => {
@@ -36,61 +36,10 @@ header logged :
   // }, []);       
 
 
-  librairie range prix react-range
+  // librairie range prix react-range
 
-
-
-
-
-  const search = async (e) => {
-    e.preventDefault();
-
-    setIsLoading(false);
-
-    let str = "";
-    let newArrayFilter = [];
-
-    setFilter(newArrayFilter);
-    // newArrayFilter = [...filter];
-
-    if (title !== "") {
-      newArrayFilter.push({ label: "title", value: title });
-      setFilter(newArrayFilter);
-    }
-
-    if (sort) {
-      if (sort === true) {
-        newArrayFilter.push({ label: "sort", value: "price-desc" });
-      } else {
-        newArrayFilter.push({ label: "sort", value: "price-asc" });
-      }
-    }
-
-    if (priceMax) {
-      newArrayFilter.push({ label: "priceMax", value: priceMax });
-    }
-    if (priceMin) {
-      newArrayFilter.push({ label: "priceMin", value: priceMin });
-    }
-
-    if (limit) {
-      newArrayFilter.push({ lablel: "limit", value: limit });
-    }
-
-    newArrayFilter.map((filter, index) => {
-      const params = Object.values(filter);
-      if (index === 0) {
-        str += `?${params[0]}=${params[1]}`;
-      } else {
-        str += `&${params[0]}=${params[1]}`;
-      }
-      return str;
-    });
-
-    const API_URL = `https://lereacteur-vinted-api.herokuapp.com/offers/${str}`;
-    console.log(API_URL);
-    const response = await axios.get(API_URL);
-
-    setData(response.data);
-    setIsLoading(true);
-  };
+/* A FAIRE */
+  // - alert component setTimeOut sur state showAlert to stop display
+  // - keep value of sort on different pages
+  // - onFinalChage pour range
+  // - add pictures to offer
