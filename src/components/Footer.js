@@ -11,7 +11,6 @@ const Footer = ({
   const paginationArray = [];
 
   useEffect(() => {
-    fetchOffer();
     console.log(filters);
   }, [page]);
 

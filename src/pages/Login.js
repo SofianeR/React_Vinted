@@ -24,7 +24,7 @@ const Login = () => {
       // Cookies.set("connected", true);
       navigate("/");
     } catch (error) {
-      alert("Vos informations de connexion sont erronées");
+      alert("Erreur de login ou mot de passe");
     }
   };
   return (

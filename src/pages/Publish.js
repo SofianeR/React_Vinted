@@ -35,10 +35,6 @@ const Publish = ({ token }) => {
       formData.append("color", colorPublish);
       formData.append("picture", picture[0]);
 
-      // picture.map((picture, index) => {
-      //   formData.append(`picture[${index}]`, picture);
-      // });
-
       const token = Cookies.get("userToken");
 
       await axios.post(

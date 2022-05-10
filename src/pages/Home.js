@@ -47,7 +47,9 @@ const Home = ({
                     <p>{offre.owner.account.username}</p>
                   </div>
                   <div className="center-offer">
-                    <img src={offre.product_image.secure_url} alt="" />
+                    {offre.product_image && (
+                      <img src={offre.product_image.secure_url} alt="" />
+                    )}
                   </div>
 
                   <div className="bottom-offer">

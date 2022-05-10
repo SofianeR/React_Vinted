@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { Range, getTrackBackground } from "react-range";
 
 const Search = ({
@@ -7,18 +9,17 @@ const Search = ({
   values,
   setValues,
   setPage,
+  valueForChange,
+  setValueForChange,
+  setLimit,
   // priceMax,
   // setPriceMax,
   // setPriceMin,
-  // setLimit,
 }) => {
   const STEP = 1;
   const MIN = 0;
   const MAX = 500;
 
-  const handleCheckBox = () => {
-    fetchOffer();
-  };
   return (
     <div className="container-search">
       <form onSubmit={() => {}}>
@@ -29,16 +30,19 @@ const Search = ({
           }
           onClick={() => {
             setSort(!sort);
-            fetchOffer();
           }}>
           <div className="selectorSort"></div>
         </div>
+
         <div className="range">
           <Range
             values={values}
             step={STEP}
             min={MIN}
             max={MAX}
+            onFinalChange={(v) => {
+              setValueForChange(v);
+            }}
             onChange={(values) => {
               setValues(values);
             }}
@@ -59,7 +63,7 @@ const Search = ({
                     width: "100%",
                     borderRadius: "4px",
                     background: getTrackBackground({
-                      values,
+                      values: values,
                       colors: ["#ccc", "#2DB0BA", "#ccc"],
                       min: MIN,
                       max: MAX,
@@ -70,7 +74,7 @@ const Search = ({
                 </div>
               </div>
             )}
-            renderThumb={({ props, isDragged }) => (
+            renderThumb={({ props }) => (
               <div
                 {...props}
                 style={{
@@ -98,6 +102,18 @@ const Search = ({
             )}
           />
           <div className="valuesRange"></div>
+        </div>
+        <div className="select">
+          <select
+            name="limit"
+            id="limit"
+            onChange={(e) => {
+              setLimit(e.target.value);
+            }}>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="75">75</option>
+          </select>
         </div>
         {/* <input
           type="number"

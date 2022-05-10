@@ -18,7 +18,7 @@ import CheckoutForm from "./pages/CheckoutForm";
 // import Footer from "./components/Footer";
 // import Signup from "./pages/Signup";
 // import Login from "./pages/Login";
-// import Test from "./pages/test";
+import Test from "./test";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -50,6 +50,8 @@ function App() {
   const [page, setPage] = useState();
   const [pageCount, setPageCount] = useState(1);
   const [rangeValues, setRangeValues] = useState([0, 500]);
+  const [valueForChange, setValueForChange] = useState();
+
   // const [priceMax, setPriceMax] = useState();
   // const [priceMin, setPriceMin] = useState();
   // const [skip, setSkip] = useState();
@@ -117,6 +119,7 @@ function App() {
 
     const API_URL = `https://lereacteur-vinted-api.herokuapp.com/offers/${str}`;
     const response = await axios.get(API_URL);
+    console.log(API_URL);
 
     setPageCount(Math.ceil(response.data.count / limit));
 
@@ -127,7 +130,8 @@ function App() {
 
   useEffect(() => {
     fetchOffer();
-  }, []);
+    console.log(limit);
+  }, [valueForChange, sort, page, limit]);
 
   return (
     <Router>
@@ -159,6 +163,8 @@ function App() {
             fetchOffer={fetchOffer}
             values={rangeValues}
             setValues={setRangeValues}
+            setValueForChange={setValueForChange}
+            valueForChange={valueForChange}
           />
         ) : null}
 
@@ -229,8 +235,8 @@ function App() {
 
           {/* <Route path="/signup" element={<Signup />} /> */}
           {/* <Route path="/login" element={<Login />} /> */}
-          {/* <Route path="/test" element={<Test />} /> */}
           {/* <Route path="/modal" element={<Modal show={true} />} /> */}
+          <Route path="/test" element={<Test />} />
         </Routes>
       </div>
     </Router>

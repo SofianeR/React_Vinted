@@ -173,7 +173,8 @@ header img{
     width: 30%;
 }
 .offer-img img{
-    height: 600px;
+    height: 100%;
+    width: 100%;
 }
 
 .offer-right{
@@ -411,6 +412,18 @@ header img{
     width: 40%;
     border-radius: 50%;
     background-color: white;
+}
+
+#limit{
+    padding: 2px;
+    background-color: #2DB0BA;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    margin-left: 20px;
+}
+#limit:focus{
+    outline: none;
 }
 
 .range{

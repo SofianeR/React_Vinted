@@ -36,13 +36,14 @@
 // librairie range prix react-range
 
 /* A FAIRE */
-// - alert component setTimeOut sur state showAlert to stop display
-// - keep value of sort on different pages
-// - onFinalChage pour range
+// - alert component setTimeOut sur state showAlert to stop display ../
+// - keep value of sort on different pages ../
+// - onFinalChage pour range ../
 // - add pictures to offer
 // URL.createObjectURL(path img)
 
 // Remplir bdd avec info api reacteur
+
 // import axios from "axios";
 // import { useEffect } from "react";
 
