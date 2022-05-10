@@ -5,7 +5,7 @@ import Dropzone from "react-dropzone";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Publish = () => {
+const Publish = ({ token }) => {
   const [titlePublish, setTitlePublish] = useState("");
   const [descriptionPublish, setDescriptionPublish] = useState("");
   const [brandPublish, setBrandPublish] = useState("");
@@ -23,6 +23,7 @@ const Publish = () => {
     e.preventDefault();
     try {
       const formData = new FormData();
+
       formData.append("title", titlePublish);
       formData.append("description", descriptionPublish);
       formData.append("price", pricePublish);
@@ -40,7 +41,7 @@ const Publish = () => {
 
       const token = Cookies.get("userToken");
 
-      const response = await axios.post(
+      await axios.post(
         "https://lereacteur-vinted-api.herokuapp.com/offer/publish",
         formData,
         {
@@ -52,20 +53,20 @@ const Publish = () => {
       alert("Votre annonce a bien été ajoutée");
       navigate("/");
     } catch (error) {
-      console.log(error.response);
+      console.log(error.message);
     }
   };
 
-  return (
+  return token ? (
     <div className="container-form-publish">
-      <button
+      {/* <button
         onClick={() => {
           picture.map((item) => {
             console.log(Object.keys(item), item);
           });
         }}>
         CONSOLE
-      </button>
+      </button> */}
       <div className="container-all-publish">
         <h2>Vends ton article</h2>
         <form onSubmit={publishOffer}>
@@ -84,8 +85,8 @@ const Publish = () => {
 
                   acceptedFiles.map((item) => {
                     files.push(item);
+                    return files;
                   });
-                  // console.log(files);
                   setPicture(acceptedFiles);
                 }}>
                 {({ getRootProps, getInputProps }) => (
@@ -209,6 +210,8 @@ const Publish = () => {
         </form>
       </div>
     </div>
+  ) : (
+    navigate("/")
   );
 };
 export default Publish;

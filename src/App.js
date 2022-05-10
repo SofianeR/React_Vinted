@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import axios from "axios";
 import Cookies from "js-cookie";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 
 import Header from "./components/Header";
 import Home from "./pages/Home";
@@ -12,10 +14,11 @@ import Publish from "./pages/Publish";
 import ModalLogin from "./components/ModalLogin";
 import ModalSignup from "./components/ModalSignup";
 import Search from "./components/Search";
-import Footer from "./components/Footer";
-import Signup from "./pages/Signup";
-import Login from "./pages/Login";
-import Test from "./pages/test";
+import CheckoutForm from "./pages/CheckoutForm";
+// import Footer from "./components/Footer";
+// import Signup from "./pages/Signup";
+// import Login from "./pages/Login";
+// import Test from "./pages/test";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -30,6 +33,9 @@ function App() {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  //State info offer by id
+  const [offer, setOffer] = useState();
+
   // State Modal show / hide
   const [showModalLogin, setShowModalLogin] = useState(false);
   const [showModalSignUp, setShowModalSignUp] = useState(false);
@@ -37,7 +43,8 @@ function App() {
 
   // State filter fetchOffer
   const [showFilter, setShowFilter] = useState(false);
-  const [sort, setSort] = useState();
+  const [filters, setFilters] = useState([]);
+  const [sort, setSort] = useState(false);
   const [title, setTitle] = useState("");
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState();
@@ -49,6 +56,11 @@ function App() {
 
   // State cookie token => conditional rendering header logged
   const [token, setToken] = useState(Cookies.get("userToken") || null);
+
+  //Stripe
+  const stripePromise = loadStripe(
+    "pk_test_51KxrpWGrkvJAPROHt0wvFX7HPjiysEJLq44N2wUvycPr8ZfEJThdIInxtWU7mbgdW5lpL1jYN2QlijYuwD6x5ieF00z2hyvUPj"
+  );
 
   //Function to check if logged
   const setUser = (token) => {
@@ -62,25 +74,20 @@ function App() {
   };
 
   // Function to fetchData on landing page & to fetchData with filters (Search bar)
+
   const fetchOffer = async () => {
     setIsLoading(false);
 
     let str = "";
     let newArrayFilter = [];
 
-    // newArrayFilter = [...filter];
-    // setFilter(newArrayFilter);
     if (title !== "") {
       newArrayFilter.push({ label: "title", value: title });
-      // setFilter(newArrayFilter);
     }
-
-    if (sort) {
-      if (sort === true) {
-        newArrayFilter.push({ label: "sort", value: "price-desc" });
-      } else {
-        newArrayFilter.push({ label: "sort", value: "price-asc" });
-      }
+    if (sort === true) {
+      newArrayFilter.push({ label: "sort", value: "price-desc" });
+    } else if (sort === false) {
+      newArrayFilter.push({ label: "sort", value: "price-asc" });
     }
     if (rangeValues[0]) {
       newArrayFilter.push({ label: "priceMin", value: rangeValues[0] });
@@ -114,6 +121,7 @@ function App() {
     setPageCount(Math.ceil(response.data.count / limit));
 
     setArticles(response.data);
+
     setIsLoading(true);
   };
 
@@ -123,88 +131,108 @@ function App() {
 
   return (
     <Router>
-      <Header
-        showLogin={showModalLogin}
-        setShowLogin={setShowModalLogin}
-        showSignUp={showModalSignUp}
-        setShowSignUp={setShowModalSignUp}
-        setLoginFromSell={setLoginFromSell}
-        loginFromSell={loginFromSell}
-        stateToken={token}
-        setUser={setUser}
-        setTitle={setTitle}
-        fetchOffer={fetchOffer}
-        showFilter={showFilter}
-        setShowFilter={setShowFilter}
-      />
-
-      {showFilter === true ? (
-        <Search
-          sort={sort}
-          setSort={setSort}
-          // setPriceMax={setPriceMax}
-          // priceMax={priceMax}
-          // setPriceMin={setPriceMin}
-          // setSkip={setSkip}
-          setLimit={setLimit}
-          fetchOffer={fetchOffer}
-          values={rangeValues}
-          setValues={setRangeValues}
-        />
-      ) : null}
-
-      <ModalLogin
-        showLogin={showModalLogin}
-        showSignup={showModalSignUp}
-        setShowLogin={setShowModalLogin}
-        setShowSignUp={setShowModalSignUp}
-        setUser={setUser}
-        setLoginFromSell={setLoginFromSell}
-        loginFromSell={loginFromSell}
-      />
-
-      <ModalSignup
-        showSignUp={showModalSignUp}
-        showLogin={showModalLogin}
-        setShowSignUp={setShowModalSignUp}
-        setShowLogin={setShowModalLogin}
-        setUser={setUser}
-      />
-
-      <Routes>
-        <Route
-          path="/"
+      <div className="App">
+        <Header
+          showLogin={showModalLogin}
+          setShowLogin={setShowModalLogin}
           showSignUp={showModalSignUp}
-          element={
-            <Home
-              data={articles}
-              isLoading={isLoading}
-              showSignUp={showModalSignUp}
-              showLogin={showModalLogin}
-              setLogin={setShowModalLogin}
-              setSignup={setShowModalSignUp}
-              pageCount={pageCount}
-              page={page}
-              setPage={setPage}
-              fetchOffer={fetchOffer}
-            />
-          }
+          setShowSignUp={setShowModalSignUp}
+          setLoginFromSell={setLoginFromSell}
+          loginFromSell={loginFromSell}
+          stateToken={token}
+          setUser={setUser}
+          setTitle={setTitle}
+          fetchOffer={fetchOffer}
+          showFilter={showFilter}
+          setShowFilter={setShowFilter}
         />
 
-        <Route
-          path="/offer/:id"
-          element={<Offer data={articles} axios={axios} />}
+        {showFilter === true ? (
+          <Search
+            sort={sort}
+            setSort={setSort}
+            // setPriceMax={setPriceMax}
+            // priceMax={priceMax}
+            // setPriceMin={setPriceMin}
+            // setSkip={setSkip}
+            setLimit={setLimit}
+            fetchOffer={fetchOffer}
+            values={rangeValues}
+            setValues={setRangeValues}
+          />
+        ) : null}
+
+        <ModalLogin
+          showLogin={showModalLogin}
+          showSignup={showModalSignUp}
+          setShowLogin={setShowModalLogin}
+          setShowSignUp={setShowModalSignUp}
+          setUser={setUser}
+          setLoginFromSell={setLoginFromSell}
+          loginFromSell={loginFromSell}
         />
 
-        <Route path="/publish" element={<Publish />} />
+        <ModalSignup
+          showSignUp={showModalSignUp}
+          showLogin={showModalLogin}
+          setShowSignUp={setShowModalSignUp}
+          setShowLogin={setShowModalLogin}
+          setUser={setUser}
+        />
 
-        {/* <Route path="/signup" element={<Signup />} /> */}
+        <Routes>
+          <Route
+            path="/"
+            showSignUp={showModalSignUp}
+            element={
+              <Home
+                data={articles}
+                isLoading={isLoading}
+                showSignUp={showModalSignUp}
+                showLogin={showModalLogin}
+                setLogin={setShowModalLogin}
+                setSignup={setShowModalSignUp}
+                pageCount={pageCount}
+                page={page}
+                setPage={setPage}
+                fetchOffer={fetchOffer}
+                filters={filters}
+              />
+            }
+          />
 
-        {/* <Route path="/login" element={<Login />} /> */}
+          <Route
+            path="/offer/:id"
+            element={
+              <Offer
+                data={articles}
+                axios={axios}
+                offer={offer}
+                setOffer={setOffer}
+              />
+            }
+          />
 
-        {/* <Route path="/test" element={<Test />} /> */}
-        {/* <Route path="/modal" element={<Modal show={true} />} /> */}
-      </Routes>
+          <Route
+            path="/publish"
+            element={<Publish setUser={setUser} token={token} />}
+          />
+
+          <Route
+            path="/pay"
+            element={
+              <Elements stripe={stripePromise}>
+                <CheckoutForm offer={offer} />
+              </Elements>
+            }
+          />
+
+          {/* <Route path="/signup" element={<Signup />} /> */}
+          {/* <Route path="/login" element={<Login />} /> */}
+          {/* <Route path="/test" element={<Test />} /> */}
+          {/* <Route path="/modal" element={<Modal show={true} />} /> */}
+        </Routes>
+      </div>
     </Router>
   );
 }

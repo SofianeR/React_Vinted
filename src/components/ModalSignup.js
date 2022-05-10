@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
 import axios from "axios";
 
@@ -82,11 +81,7 @@ const ModalSignup = (props) => {
             </div>
             <div className="submit">
               <input type="submit" value={"S'inscrire"} />
-              {/* <Link
-                to={"/login"}
-                style={{
-                  textDecoration: "none",
-                }}> */}
+
               <p
                 onClick={() => {
                   props.setShowSignUp(false);
@@ -94,7 +89,6 @@ const ModalSignup = (props) => {
                 }}>
                 Tu as déja un compte ? Connecte-toi
               </p>
-              {/* </Link> */}
             </div>
           </form>
         </div>

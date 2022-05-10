@@ -1,6 +1,6 @@
 // object.keys pour affichage product details offer
 
-// header logged : 
+// header logged :
 //         <div className="header-right-container">
 //           <div className="vendre">
 //             <button className="button-signup">Vends tes articles</button>
@@ -18,28 +18,124 @@
 //           </div>
 //         </div>
 
+//  header pre return :
+// const [cookies, setCookies] = useState(false);
+// console.log(cookies);
+// useEffect(() => {
+// console.log(Cookies.get("connected"));
+// const checkCookie = async () => {
+//   const cookieCheck = Cookies.get("token");
+//   if (cookieCheck) {
+//     setCookies(true);
+//   }
+// };
+// checkCookie();
+// setCookies(Cookies.get("connected"));
+// }, []);
 
-
-//  header pre return : 
-   // const [cookies, setCookies] = useState(false);
-  // console.log(cookies);
-  // useEffect(() => {
-  // console.log(Cookies.get("connected"));
-  // const checkCookie = async () => {
-  //   const cookieCheck = Cookies.get("token");
-  //   if (cookieCheck) {
-  //     setCookies(true);
-  //   }
-  // };
-  // checkCookie();
-  // setCookies(Cookies.get("connected"));
-  // }, []);       
-
-
-  // librairie range prix react-range
+// librairie range prix react-range
 
 /* A FAIRE */
-  // - alert component setTimeOut sur state showAlert to stop display
-  // - keep value of sort on different pages
-  // - onFinalChage pour range
-  // - add pictures to offer
+// - alert component setTimeOut sur state showAlert to stop display
+// - keep value of sort on different pages
+// - onFinalChage pour range
+// - add pictures to offer
+// URL.createObjectURL(path img)
+
+// Remplir bdd avec info api reacteur
+// import axios from "axios";
+// import { useEffect } from "react";
+
+// const Test = () => {
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       const newObj = [];
+
+//       const response = await axios.get(
+//         "https://lereacteur-vinted-api.herokuapp.com/offers"
+//       );
+//       const obj = response.data.offers;
+
+//       obj.map((item, index) => {
+//         delete item.owner;
+//         newObj.push(item);
+//       });
+
+//       console.log(newObj);
+//       newObj.map((item, index) => {
+//         const formData = new FormData();
+//         item.product_details.map((subItem) => {
+//           console.log(subItem);
+//         });
+//         // formData.append("title", item.product_name);
+//         // formData.append("description", item.product_description);
+//         // formData.append("price", item.product_price);
+//         // formData.append("condition", item.product_details);
+//         // formData.append("city", spotPublish);
+//         // formData.append("brand", brandPublish);
+//         // formData.append("size", sizePublish);
+//         // formData.append("exchange", exchangePublish);
+//         // formData.append("color", colorPublish);
+//         // formData.append("picture", item.image);
+
+//         // picture.map((picture, index) => {
+//         //   formData.append(`picture[${index}]`, picture);
+//         // });
+
+//         // const token = Cookies.get("userToken");
+
+//         // await axios.post(
+//         //   "https://lereacteur-vinted-api.herokuapp.com/offer/publish",
+//         //   formData,
+//         //   {
+//         //     headers: {
+//         //       authorization: `Bearer ${token}`,
+//         //     },
+//         //   }
+//         // );
+//       });
+//     };
+//     fetchData();
+//   }, []);
+//   return (
+//     <div>
+//       {/* <Dropzone
+//         onDrop={(acceptedFiles) => {
+//           const files = [];
+//           files.push(acceptedFiles);
+//         }}>
+//         {({ getRootProps, getInputProps }) => (
+//           <section>
+//             {files.map((item, index) => {
+//               item.map((subitem) => console.log(subitem.name));
+//               return <p key={index}>{item.name}</p>;
+//             })}
+//             <div {...getRootProps()}>
+//               <input {...getInputProps()} />
+//               <p>Drag 'n' drop some files here, or click to select files</p>
+//             </div>
+//           </section>
+//         )}
+//       </Dropzone> */}
+//       <h1>TEST</h1>
+//     </div>
+//   );
+// };
+
+// export default Test;
+
+// const Test = () => {
+//   return <h1>TEST</h1>;
+// };
+// export default Test;
+
+{
+  /* <FontAwesomeIcon
+icon={"user"}
+size={"2x"}
+color={"#94D5DA"}
+onClick={() => {
+  setUser(null);
+}}
+/> */
+}

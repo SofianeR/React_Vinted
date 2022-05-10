@@ -6,6 +6,7 @@ const Search = ({
   fetchOffer,
   values,
   setValues,
+  setPage,
   // priceMax,
   // setPriceMax,
   // setPriceMin,
@@ -16,13 +17,22 @@ const Search = ({
   const MAX = 500;
 
   const handleCheckBox = () => {
-    setSort(!sort);
     fetchOffer();
   };
   return (
     <div className="container-search">
-      <form onSubmit={fetchOffer}>
-        <input type="checkbox" onChange={handleCheckBox} />
+      <form onSubmit={() => {}}>
+        {/* <input type="checkbox" onChange={handleCheckBox} /> */}
+        <div
+          className={
+            sort === false ? "checkboxSort" : "checkboxSort checkedSort"
+          }
+          onClick={() => {
+            setSort(!sort);
+            fetchOffer();
+          }}>
+          <div className="selectorSort"></div>
+        </div>
         <div className="range">
           <Range
             values={values}

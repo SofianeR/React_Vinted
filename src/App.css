@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+.App{
+    font-family: 'Roboto', sans-serif;
+}
 
 header{
     display: flex;
@@ -50,14 +54,20 @@ header{
     justify-content: center;
 }
 .user-logged{
-    border: solid 1px #2DB0BA;
-    border-radius: 50%;
     height: 50px;
     width: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 20px;
+    flex: 10%;
+}
+.deco{
+    padding: 5px;
+    background-color: #C2175B;
+    color: white;
+    border-radius: 5px;
+    border: none;
 }
 .button-signup {
     border: solid 1px #94D5DA;
@@ -363,27 +373,48 @@ header img{
 /* SEARCH */
 
 .container-search{
-    /* padding: 10px; */
     display: flex;
     justify-self: flex-start;
-    position: absolute;
+    position: fixed;
     top: 10vh;
-    left:20vw;
+    /* left:20vw; */
     z-index: 100000;
-    width: 30%;
+    /* width: 30%; */
     background-color: white;
     border-radius: 4px;
+    width: 100%!important;
     
 }
 .container-search form{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 100%;
     padding: 10px;
 }
 
+.checkboxSort{
+    height: 20px;
+    width: 50px;
+    border: solid 1px #2DB0BA;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    margin: 0 50px;
+}
+.checkedSort{
+    justify-content: flex-end;
+    background-color: #2DB0BA;
+}
+.selectorSort{
+    border: solid 1px lightgray;
+    height: 80%;
+    width: 40%;
+    border-radius: 50%;
+    background-color: white;
+}
+
 .range{
-    width: 100%;
+    width: 20%;
     margin: auto 20px;
     color: #2DB0BA;
 }
@@ -497,4 +528,52 @@ header img{
     height: 200px;
 }
 
+/* CHECKOUT FORM */
+.container-payform{
+    background-color: #EBEDEE;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.container-payform form{
+    background-color: white;
+    padding: 30px;
+    width: 600px;
+}
+.container-payform h4{
+    margin-top: 0;
+    padding-top: 20px;
+    font-weight: 300;
+}
+.top-payment{
+    /* padding: 40px; */
+    border-bottom: solid lightgray 2px;
+}
+
+.details-payment div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.total-payment div{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+
+}
+.card-element{
+    margin-top: 30px;
+}
+.pay-button{
+    width: 100%;
+    padding:15px;
+    background-color: #00BB6A;
+    margin-top: 20px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+}

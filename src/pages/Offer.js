@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import axios from "axios";
 
-const Offer = () => {
-  const [offer, setOffer] = useState();
+const Offer = ({ offer, setOffer }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { id } = useParams();
 
@@ -14,7 +13,6 @@ const Offer = () => {
         const response = await axios.get(
           `https://lereacteur-vinted-api.herokuapp.com/offer/${id}`
         );
-        console.log(response.data);
         setOffer(response.data);
         setIsLoading(true);
       };
@@ -76,7 +74,9 @@ const Offer = () => {
             <p>{offer.owner.account.username}</p>
           )}
         </div>
-        <button>Acheter</button>
+        <Link to={"/pay"}>
+          <button>Acheter</button>
+        </Link>
       </div>
     </div>
   );

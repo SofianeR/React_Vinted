@@ -14,6 +14,7 @@ const Home = ({
   fetchOffer,
   setLogin,
   setSignup,
+  filters,
 }) => {
   return (
     <div
@@ -72,6 +73,7 @@ const Home = ({
         setPage={setPage}
         fetchOffer={fetchOffer}
         isLoading={isLoading}
+        filters={filters}
       />
     </div>
   );

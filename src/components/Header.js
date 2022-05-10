@@ -1,6 +1,5 @@
 import logo_Vinted from "../assets/img/Vinted_logo.png";
 
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
 // import Cookies from "js-cookie";
@@ -54,20 +53,19 @@ const Header = ({
 
       {stateToken ? (
         <div className="header-right-container">
+          <div className="user-logged">
+            <button
+              className="deco"
+              onClick={() => {
+                setUser(null);
+              }}>
+              Se déconnecter
+            </button>
+          </div>
           <div className="vendre">
             <Link to={"/publish"}>
               <button className="button-signup">Vends tes articles</button>
             </Link>
-          </div>
-          <div className="user-logged">
-            <FontAwesomeIcon
-              icon={"user"}
-              size={"2x"}
-              color={"#94D5DA"}
-              onClick={() => {
-                setUser(null);
-              }}
-            />
           </div>
         </div>
       ) : (

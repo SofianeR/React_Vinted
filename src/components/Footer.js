@@ -1,10 +1,18 @@
 import { useEffect } from "react";
 
-const Footer = ({ page, setPage, pageCount, isLoading, fetchOffer }) => {
+const Footer = ({
+  page,
+  setPage,
+  pageCount,
+  isLoading,
+  fetchOffer,
+  filters,
+}) => {
   const paginationArray = [];
 
   useEffect(() => {
     fetchOffer();
+    console.log(filters);
   }, [page]);
 
   for (let i = 0; i < pageCount; i++) {
