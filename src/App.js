@@ -41,6 +41,9 @@ function App() {
   const [showModalSignUp, setShowModalSignUp] = useState(false);
   const [loginFromSell, setLoginFromSell] = useState(false);
 
+  //State refresh fetOffer on publish
+  const [refreshPublish, setRefreshPublish] = useState(false);
+
   // State filter fetchOffer
   const [showFilter, setShowFilter] = useState(false);
   const [filters, setFilters] = useState([]);
@@ -51,7 +54,6 @@ function App() {
   const [pageCount, setPageCount] = useState(1);
   const [rangeValues, setRangeValues] = useState([0, 500]);
   const [valueForChange, setValueForChange] = useState();
-
   // const [priceMax, setPriceMax] = useState();
   // const [priceMin, setPriceMin] = useState();
   // const [skip, setSkip] = useState();
@@ -117,7 +119,7 @@ function App() {
       return str;
     });
 
-    const API_URL = `https://lereacteur-vinted-api.herokuapp.com/offers/${str}`;
+    const API_URL = `https://apivinted.herokuapp.com/offers/${str}`;
     const response = await axios.get(API_URL);
     console.log(API_URL);
 
@@ -131,7 +133,7 @@ function App() {
   useEffect(() => {
     fetchOffer();
     console.log(limit);
-  }, [valueForChange, sort, page, limit]);
+  }, [valueForChange, sort, page, limit, refreshPublish]);
 
   return (
     <Router>
@@ -221,7 +223,14 @@ function App() {
 
           <Route
             path="/publish"
-            element={<Publish setUser={setUser} token={token} />}
+            element={
+              <Publish
+                setUser={setUser}
+                token={token}
+                setRefreshPublish={setRefreshPublish}
+                refreshPublish={refreshPublish}
+              />
+            }
           />
 
           <Route

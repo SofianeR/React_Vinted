@@ -5,7 +5,7 @@ import Dropzone from "react-dropzone";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Publish = ({ token }) => {
+const Publish = ({ token, setRefreshPublish, refreshPublish }) => {
   const [titlePublish, setTitlePublish] = useState("");
   const [descriptionPublish, setDescriptionPublish] = useState("");
   const [brandPublish, setBrandPublish] = useState("");
@@ -37,17 +37,17 @@ const Publish = ({ token }) => {
 
       const token = Cookies.get("userToken");
 
-      await axios.post(
-        "https://lereacteur-vinted-api.herokuapp.com/offer/publish",
-        formData,
-        {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      await axios.post("https://apivinted.herokuapp.com/offer/post", formData, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+      setTimeout(() => {
+        setRefreshPublish(!refreshPublish);
+
+        navigate("/");
+      }, 3000);
       alert("Votre annonce a bien été ajoutée");
-      navigate("/");
     } catch (error) {
       console.log(error.message);
     }

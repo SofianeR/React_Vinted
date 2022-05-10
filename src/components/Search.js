@@ -74,7 +74,7 @@ const Search = ({
                 </div>
               </div>
             )}
-            renderThumb={({ props }) => (
+            renderThumb={({ props, isDragged }) => (
               <div
                 {...props}
                 style={{
@@ -95,7 +95,7 @@ const Search = ({
                   style={{
                     height: "5px",
                     width: "5px",
-                    // backgroundColor: isDragged ? "#548BF4" : "#CCC",
+                    backgroundColor: isDragged ? "#548BF4" : "#CCC",
                   }}
                 />
               </div>
@@ -110,6 +110,8 @@ const Search = ({
             onChange={(e) => {
               setLimit(e.target.value);
             }}>
+            <option value="0">Limit</option>
+            <option value="2">2</option>
             <option value="25">25</option>
             <option value="50">50</option>
             <option value="75">75</option>

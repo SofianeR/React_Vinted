@@ -11,12 +11,12 @@ const Offer = ({ offer, setOffer }) => {
     try {
       const fetchData = async () => {
         const response = await axios.get(
-          `https://lereacteur-vinted-api.herokuapp.com/offer/${id}`
+          `https://apivinted.herokuapp.com/offer/${id}`
         );
         setOffer(response.data);
         setIsLoading(true);
       };
-
+      console.log(offer);
       fetchData();
     } catch (error) {
       console.log(error.response);

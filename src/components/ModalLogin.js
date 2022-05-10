@@ -21,7 +21,7 @@ const ModalLogin = ({
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://lereacteur-vinted-api.herokuapp.com/user/login",
+        "https://apivinted.herokuapp.com/user/login",
         {
           email: mail,
           password: password,

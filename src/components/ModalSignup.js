@@ -11,8 +11,9 @@ const ModalSignup = (props) => {
   const signUp = async (e) => {
     e.preventDefault();
     try {
+      console.log("trye");
       const response = await axios.post(
-        "https://lereacteur-vinted-api.herokuapp.com/user/signup",
+        "https://apivinted.herokuapp.com/user/signup",
         {
           email: mail,
           username: userName,

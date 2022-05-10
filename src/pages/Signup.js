@@ -12,15 +12,12 @@ const Signup = () => {
 
   const signUser = async (e) => {
     e.preventDefault();
-    await axios.post(
-      "https://lereacteur-vinted-api.herokuapp.com/user/signup",
-      {
-        email: mail,
-        username: userName,
-        password: password,
-        newsletter: newsLetter,
-      }
-    );
+    await axios.post("https://apivinted.herokuapp.com/user/signup", {
+      email: mail,
+      username: userName,
+      password: password,
+      newsletter: newsLetter,
+    });
     navigate("/login");
   };
 
