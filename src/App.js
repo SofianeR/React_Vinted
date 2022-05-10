@@ -121,7 +121,7 @@ function App() {
 
     const API_URL = `https://apivinted.herokuapp.com/offers/${str}`;
     const response = await axios.get(API_URL);
-    console.log(API_URL);
+    // console.log(API_URL);
 
     setPageCount(Math.ceil(response.data.count / limit));
 
@@ -132,7 +132,7 @@ function App() {
 
   useEffect(() => {
     fetchOffer();
-    console.log(limit);
+    // console.log(limit);
   }, [valueForChange, sort, page, limit, refreshPublish]);
 
   return (

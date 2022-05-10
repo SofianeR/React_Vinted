@@ -16,7 +16,7 @@ const Offer = ({ offer, setOffer }) => {
         setOffer(response.data);
         setIsLoading(true);
       };
-      console.log(offer);
+      // console.log(offer);
       fetchData();
     } catch (error) {
       console.log(error.response);
@@ -37,7 +37,7 @@ const Offer = ({ offer, setOffer }) => {
         <div className="top-description">
           {offer.product_details.map((detail, index) => {
             const keys = Object.keys(detail);
-            console.log(keys, detail[keys]);
+            // console.log(keys, detail[keys]);
             return (
               <div key={index} className="map-details">
                 <div className="product_details_offer">

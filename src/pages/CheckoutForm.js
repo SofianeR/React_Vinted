@@ -26,10 +26,10 @@ const CheckoutForm = ({ offer }) => {
     const stripeResponse = await stripe.createToken(cardElement, {
       name: "id de l'acheteur",
     });
-    console.log(stripeResponse);
+    // console.log(stripeResponse);
 
     const stripeToken = stripeResponse.token.id;
-    console.log(stripeToken);
+    // console.log(stripeToken);
 
     const response = await axios.post("https://apivinted.herokuapp.com/pay", {
       stripeToken,

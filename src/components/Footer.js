@@ -11,7 +11,7 @@ const Footer = ({
   const paginationArray = [];
 
   useEffect(() => {
-    console.log(filters);
+    // console.log(filters);
   }, [page]);
 
   for (let i = 0; i < pageCount; i++) {
