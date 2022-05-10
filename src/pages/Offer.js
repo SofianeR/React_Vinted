@@ -35,30 +35,18 @@ const Offer = ({ offer, setOffer }) => {
         {offer.product_price ? <span>{offer.product_price} €</span> : null}
 
         <div className="top-description">
-          <div className="product_details-left">
-            <p>MARQUE</p>
-            <p>TAILLE</p>
-            <p>éTAT</p>
-            <p>couleur</p>
-            <p>EMPLACEMENT</p>
-            <p>MODES de paiments</p>
-          </div>
-          <div className="product_details-right">
-            {offer.product_details.map((detail, index) => {
-              return (
-                <div key={index} className="map-details">
-                  {detail.MARQUE ? <p>{detail.MARQUE}</p> : null}
-                  {detail.TAILLE ? <p>{detail.TAILLE}</p> : null}
-
-                  {detail.ETAT ? <p>{detail.ETAT}</p> : null}
-
-                  {detail.COULEUR ? <p>{detail.COULEUR}</p> : null}
-                  {detail.EMPLACEMENT ? <p>{detail.MARQUE}</p> : null}
-                  {detail["MODE DE PAIEMENT"] ? <p>{detail.MARQUE}</p> : null}
+          {offer.product_details.map((detail, index) => {
+            const keys = Object.keys(detail);
+            console.log(keys, detail[keys]);
+            return (
+              <div key={index} className="map-details">
+                <div className="product_details_offer">
+                  <p>{keys}</p>
+                  {detail[keys] && <p>{detail[keys]}</p>}
                 </div>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
         </div>
         <div className="bottom-offer">
           {offer.product_name ? <h3>{offer.product_name}</h3> : null}

@@ -145,7 +145,10 @@ header img{
     display: flex;
     align-items: center;
 }
-
+.product_details_offer{
+    display: flex;
+    justify-content: space-between;
+}
 .top-offer img{
     height: 25px;
     width: 25px;
@@ -195,19 +198,17 @@ header img{
     justify-content: space-around;
     align-items: center;
 }
-.product_details-right{
+
+
+.top-description{
+    display: flex;
+   
     text-transform: uppercase;
     font-size: 13px;
     color: #666666;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-}
-
-.top-description{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
 }
 .bottom-offer p{
     color: #666666;
