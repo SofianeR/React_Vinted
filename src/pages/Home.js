@@ -15,6 +15,8 @@ const Home = ({
   setLogin,
   setSignup,
   filters,
+  stateToken,
+  setLoginFromSell,
 }) => {
   return (
     <div
@@ -23,7 +25,14 @@ const Home = ({
           ? "container modal-active"
           : "container"
       }>
-      <Top setLogin={setLogin} setSignup={setSignup} />
+      <Top
+        setLogin={setLogin}
+        setSignup={setSignup}
+        stateToken={stateToken}
+        showLogin={showLogin}
+        showSignup={showSignUp}
+        setLoginFromSell={setLoginFromSell}
+      />
       {isLoading === false ? (
         <p>Chargement des Offres</p>
       ) : (

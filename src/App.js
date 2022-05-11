@@ -196,6 +196,7 @@ function App() {
               <Home
                 data={articles}
                 isLoading={isLoading}
+                stateToken={token}
                 showSignUp={showModalSignUp}
                 showLogin={showModalLogin}
                 setLogin={setShowModalLogin}
@@ -205,6 +206,7 @@ function App() {
                 setPage={setPage}
                 fetchOffer={fetchOffer}
                 filters={filters}
+                setLoginFromSell={setLoginFromSell}
               />
             }
           />
