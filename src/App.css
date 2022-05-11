@@ -477,6 +477,10 @@ header img{
     padding: 30px;
     background-color: white;
     border: solid lightgray 1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
 }
 
@@ -492,14 +496,21 @@ header img{
     justify-content: center;
     align-items: center;
     height: 125px;
+    width: 100%;
     border: solid lightgray 1px;
 }
+
 .picture button{
     padding: 10px;
     border-radius: 2px;
     border: solid 2px #2DB0BA;
     background-color: white;
     color: #2DB0BA;
+}
+.previewPicture{
+    height: 120px;
+    width: 120px;
+    margin-top: 20px;
 }
 .input-fields{
     border-bottom: solid 1px lightgray;

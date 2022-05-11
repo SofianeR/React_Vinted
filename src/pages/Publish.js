@@ -44,7 +44,6 @@ const Publish = ({ token, setRefreshPublish, refreshPublish }) => {
       });
       setTimeout(() => {
         setRefreshPublish(!refreshPublish);
-
         navigate("/");
       }, 3000);
       alert("Votre annonce a bien été ajoutée");
@@ -95,6 +94,13 @@ const Publish = ({ token, setRefreshPublish, refreshPublish }) => {
                 )}
               </Dropzone>
             </div>
+            {picture.length !== 0 ? (
+              <img
+                src={URL.createObjectURL(picture[0])}
+                alt=""
+                className="previewPicture"
+              />
+            ) : null}
           </div>
           <div className="container-publish">
             <div className="input-fields">
