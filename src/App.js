@@ -239,7 +239,11 @@ function App() {
             path="/pay"
             element={
               <Elements stripe={stripePromise}>
-                <CheckoutForm offer={offer} />
+                <CheckoutForm
+                  offer={offer}
+                  stateToken={token}
+                  setModalLogin={setShowModalLogin}
+                />
               </Elements>
             }
           />
