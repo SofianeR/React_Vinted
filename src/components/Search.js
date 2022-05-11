@@ -110,7 +110,7 @@ const Search = ({
             onChange={(e) => {
               setLimit(e.target.value);
             }}>
-            <option value="0">Limit</option>
+            <option value="1">Limit</option>
             <option value="2">2</option>
             <option value="25">25</option>
             <option value="50">50</option>
